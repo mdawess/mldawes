@@ -254,6 +254,32 @@
         .markdown-content strong {
             font-weight: 500;
         }
+        
+        .markdown-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: block;
+        }
+        
+        /* Optional: Add classes for different alignments if you want more control */
+        .markdown-content img.center {
+            margin: 20px auto;
+        }
+        
+        .markdown-content img.left {
+            margin: 20px 0 20px 0;
+            float: left;
+            margin-right: 20px;
+        }
+        
+        .markdown-content img.right {
+            margin: 20px 0 20px 0;
+            float: right;
+            margin-left: 20px;
+        }
     </style>
 </head>
 <body>
@@ -281,7 +307,9 @@
         import { loadMarkdownFiles, convertMarkdownToHtml, extractDate } from '../utils/parser.js';
         
         const knownFiles = [
-            'earl_grey_ice_cream.md'
+            'earl_grey_ice_cream.md',
+            'mushroom_risotto.md',
+            'spanish_octopus.md'
         ];
         
         async function discoverMarkdownFiles() {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research</title>
+    <title>teaching</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -339,12 +339,12 @@
             navDiv.style.marginBottom = '30px';
             navDiv.innerHTML = `
                 <a href="../index.html" style="color: #666; text-decoration: none; display: block; margin-bottom: 10px;">/Home</a>
-                <h1 style="margin: 0; font-weight: 400;">/Research</h1>
+                <h1 style="margin: 0; font-weight: 400;">/Teaching</h1>
             `;
             sidebar.appendChild(navDiv);
             
-            // Add research files as sidebar cards (titles only)
-            window.researchFiles.forEach(file => {
+            // Add teaching files as sidebar cards (titles only)
+            window.teachingFiles.forEach(file => {
                 const isActive = file.id === activeFileId;
                 const sidebarCard = createSidebarCard(file, isActive);
                 sidebar.appendChild(sidebarCard);
@@ -352,7 +352,7 @@
         }
 
         function loadContentById(fileId) {
-            const file = window.researchFiles.find(f => f.id === fileId);
+            const file = window.teachingFiles.find(f => f.id === fileId);
             if (file) {
                 loadContent(file);
             }
@@ -391,18 +391,18 @@
                 return;
             }
             
-            const researchFiles = await loadMarkdownFiles(markdownFiles);
+            const teachingFiles = await loadMarkdownFiles(markdownFiles);
             
-            if (researchFiles.length === 0) {
+            if (teachingFiles.length === 0) {
                 cardsContainer.innerHTML = '<p style="text-align: center; color: #666;">Nothing yet. Check back soon!</p>';
                 return;
             }
             
-            window.researchFiles = researchFiles;
+            window.teachingFiles = teachingFiles;
             
             updateSidebar();
             
-            researchFiles.forEach(file => {
+            teachingFiles.forEach(file => {
                 cardsContainer.appendChild(createCard(file));
             });
             

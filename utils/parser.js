@@ -45,9 +45,15 @@ export function convertMarkdownToHtml(markdown) {
     html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
     html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
     html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    html = html.replace(/_(.*?)_/g, '<em>$1</em>');
     html = html.replace(/^- (.*$)/gim, '<li>$1</li>');
     html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
-    html = html.replace(/^(?!<[h|u|o])(.+)$/gim, '<p>$1</p>');
+    
+    // Handle images: ![alt](src) with optional alignment
+    html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="max-width: 60%; height: auto; margin: 20px auto; border-radius: 2px; display: block;">');
+    
+    html = html.replace(/^(?!<[h|u|o|i|e])(.+)$/gim, '<p>$1</p>');
     html = html.replace(/<p><\/p>/g, '');
     html = html.replace(/<p>\s*<\/p>/g, '');
     
